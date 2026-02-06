@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section>
+
+<h2>Business Directory</h2>
+
+<form method="get" class="search-form">
+
+<input name="q" placeholder="Search business...">
+
+<button class="btn">Search</button>
+
+</form>
+
+
+<div class="cards">
+
+{% for b in businesses %}
+
+<div class="service-box">
+
+<img src="{{ b.image.url }}" width="100%">
+
+<h3>{{ b.name }}</h3>
+
+<p>{{ b.description }}</p>
+
+</div>
+
+{% empty %}
+
+<p>No businesses found.</p>
+
+{% endfor %}
+
+</div>
+
+</section>
+
+{% endblock %}

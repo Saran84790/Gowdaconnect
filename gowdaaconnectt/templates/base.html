@@ -1,0 +1,92 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<title>GowdaConnect</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+<div class="nav-container">
+
+<div class="logo">
+    GowdaConnect
+</div>
+
+<nav class="nav-links">
+
+<a href="/">Home</a>
+<a href="/about/">About</a>
+<a href="/services/">Services</a>
+<a href="/directory/">Directory</a>
+<a href="/contact/">Contact</a>
+
+{% if user.is_authenticated %}
+
+<a href="/logout/" class="nav-btn">Logout</a>
+
+{% else %}
+
+{% if request.path != '/login/' %}
+<a href="/login/" class="nav-btn">Login</a>
+{% endif %}
+
+{% if request.path != '/register/' %}
+<a href="/register/" class="nav-btn register-btn">Register</a>
+{% endif %}
+
+{% endif %}
+
+</nav>
+
+</div>
+
+</header>
+
+
+<!-- MESSAGES -->
+
+{% if messages %}
+
+<div class="msg">
+
+{% for message in messages %}
+<p class="{{ message.tags }}">{{ message }}</p>
+{% endfor %}
+
+</div>
+
+{% endif %}
+
+
+<!-- PAGE CONTENT -->
+
+<div class="page-content">
+
+{% block content %}
+{% endblock %}
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer class="main-footer">
+
+<p>© 2026 GowdaConnect | Connecting Gowda Community</p>
+
+</footer>
+
+</body>
+</html>
